@@ -83,7 +83,7 @@ void ScoreCard(int &card, int &score, int &aceCount)
     int cardValue = card % 13;
     if (cardValue < 9)
     {
-        score += cardValue+1; // 2~10
+        score += cardValue+2; // 2~10
     }
     else if (cardValue < 12 && cardValue >= 9)
     {
@@ -106,6 +106,16 @@ void AceAdjustment(int &score, int &aceCount)
     }
 }
 
+void PrintCard(int cards)
+{
+    const char* Symbols[] = { "♠", "♥", "♣", "♦" };
+    const char* values[] = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A" };
+    const char* Symbol = Symbols[cards / 13];
+    const char* value = values[cards % 13];
+    printf("%s%s ", Symbol, value);
+}
+
+
 
 void Homework02_Run()
 {
@@ -118,10 +128,18 @@ void Homework02_Run()
 	}   //0~51까지의 숫자로 카드 덱 초기화 (0~12: ♠2~A, 13~25: ♥2~A, 26~38: ♣2~A, 39~51: ♦2~A)
 
 
-    int playerCards[10] = { -1,-1, -1, -1, -1, -1, -1, -1, -1, -1 };
-    int dealerCards[10] = { -1,-1, -1, -1, -1, -1, -1, -1, -1, -1 }; //최악의 경우 플레이어와 딜러가 각각 10장까지 받을 수 있다고 가정
+    int playerCards[10] = { -1,-1, -1, -1, -1, -1, -1, -1, -1, -1 };    //최악의 경우 플레이어와 딜러가 각각 10장까지 받을 수 있다고 가정
+	char playercardSymbols[10] = { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' }; // 카드 심볼을 저장할 배열
+	char playercardValues[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }; // 0~12로 카드 값(2~A)을 저장할 배열
+
+    int dealerCards[10] = { -1,-1, -1, -1, -1, -1, -1, -1, -1, -1 };    //최악의 경우 플레이어와 딜러가 각각 10장까지 받을 수 있다고 가정
+	int dealercardSymbols[10] = { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' }; // 카드 심볼을 저장할 배열
+	char dealercardValues[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }; // 0~12로 카드 값(2~A)을 저장할 배열
+
+
     int playerCardCount = 0, dealerCardCount = 0;
 	int playerAceCount = 0, dealerAceCount = 0; // A의 개수를 추적하여 점수 계산에 활용
+
 
 	int playerScore = 0, dealerScore = 0;
 
@@ -132,6 +150,48 @@ void Homework02_Run()
 	playerCards[playerCardCount] = Deck[randIdx];   // 플레이어 첫 번째 카드 배분
 	Deck[randIdx] = -1;  // 중복 방지 위해 덱에서 해당 카드 제거(-1)
 	ScoreCard(playerCards[playerCardCount], playerScore, playerAceCount); // 플레이어 첫 번째 카드 점수 계산
+
+
+	//출력할 카드 값과 심볼 저장
+    
+ //   if (playerCards[playerCardCount] % 13 < 9)
+ //   {
+ //       playercardValues[playerCardCount] = playerCards[playerCardCount] % 13 + 1; // 카드 값 저장 (2~10)
+ //   }
+ //   else if (playerCards[playerCardCount] % 13 ==10)
+ //   {
+ //       playercardValues[playerCardCount] = 'J'; // J
+ //   }
+ //   else if(playerCards[playerCardCount] % 13 == 11)
+ //   {
+ //       playercardValues[playerCardCount] = 'Q'; // Q
+ //   }
+ //   else if(playerCards[playerCardCount] % 13 == 12)
+ //   {
+ //       playercardValues[playerCardCount] = 'K'; // K
+ //   }
+ //   else
+ //   {
+ //       playercardValues[playerCardCount] = 'A'; // A
+	//}
+
+ //   if((playerCards[playerCardCount]+1)/13 == 0)
+ //   {
+ //       playercardSymbols[playerCardCount] = '♠'; // ♠
+ //   }
+ //   else if((playerCards[playerCardCount]+1)/13 == 1)
+ //   {
+ //       playercardSymbols[playerCardCount] = '♥'; // ♥
+ //   }
+ //   else if((playerCards[playerCardCount]+1)/13 == 2)
+ //   {
+ //       playercardSymbols[playerCardCount] = '♣'; // ♣
+ //   }
+ //   else if ((playerCards[playerCardCount] + 1) / 13 == 3)
+ //   {
+ //       playercardSymbols[playerCardCount] = '♦'; // ♦
+ //   }
+
     playerCardCount++;
 
 
@@ -142,6 +202,7 @@ void Homework02_Run()
         randIdx = rand() % 52;
 		playerCards[playerCardCount] = Deck[randIdx];
 	}// 플레이어 두 번째 카드 배분 (첫 번째 카드와 중복되지 않도록)
+
     playerCards[playerCardCount];
     Deck[randIdx] = -1;  // 중복 방지 위해 덱에서 해당 카드 제거(-1)
 	ScoreCard(playerCards[playerCardCount], playerScore, playerAceCount); // 플레이어 두 번째 카드 점수 계산
@@ -154,8 +215,16 @@ void Homework02_Run()
     printf("플레이어 카드: ");
     for (int i = 0; i < playerCardCount; i++)
     {
-        printf("%d ", playerCards[i]);
+        PrintCard(playerCards[i]); // 플레이어 첫 번째 카드 심볼과 값 출력
     }
+
+	//블랙잭 체크
+    if(playerScore == 21)
+    {
+        printf("\n블랙잭! 플레이어 승리!\n");
+        return;
+	}
+
     printf("\n플레이어 점수: %d\n", playerScore);
     if (playerScore > 21)
     {
@@ -164,12 +233,20 @@ void Homework02_Run()
     }
 
 
+
+
+    printf("=================================\n");
+
+
+
+
 	//딜러 카드 2개 배분
     while (dealerCards[dealerCardCount] == -1)
     {
         randIdx = rand() % 52;
 		dealerCards[dealerCardCount] = Deck[randIdx];
 	}   // 딜러 첫 번째 카드 배분 (플레이어 카드와 중복되지 않도록)
+
 	Deck[randIdx] = -1;  // 중복 방지 위해 덱에서 해당 카드 제거(-1)
 	ScoreCard(dealerCards[dealerCardCount], dealerScore, dealerAceCount); // 딜러 첫 번째 카드 점수 계산
     dealerCardCount++;
@@ -188,14 +265,25 @@ void Homework02_Run()
     dealerCardCount++;
 
 	// 딜러 카드 공개 (첫 번째 카드만 공개)
-    printf("\n딜러 카드: %d ?\n", dealerCards[0]);
+    printf("\n딜러 카드: ");
+    PrintCard(dealerCards[0]); // 딜러 첫 번째 카드 심볼과 값 출력
+    printf(" ?\n");
+
+
+
+
+    printf("=================================\n");
+
+
+
+
     // 플레이어 턴
-    char choice;
+    char playerChoice;
     while (true)
     {
         printf("Hit(H) 또는 Stand(S)를 선택하세요: ");
-        cin >> choice;
-        if (choice == 'H' || choice == 'h')
+        cin >> playerChoice;
+        if (playerChoice == 'H' || playerChoice == 'h')
         {
             // 플레이어 히트
             while (playerCards[playerCardCount] == -1)
@@ -203,6 +291,7 @@ void Homework02_Run()
                 randIdx = rand() % 52;
 				playerCards[playerCardCount] = Deck[randIdx];
 			}   // 플레이어 추가 카드 배분 (중복 방지)
+
             Deck[randIdx] = -1;  // 중복 방지 위해 덱에서 해당 카드 제거(-1)
             ScoreCard(playerCards[playerCardCount], playerScore, playerAceCount); // 플레이어 추가 카드 점수 계산
 
@@ -212,7 +301,7 @@ void Homework02_Run()
             printf("플레이어 카드: ");
             for (int i = 0; i < playerCardCount; i++)
             {
-                printf("%d ", playerCards[i]);
+				PrintCard(playerCards[i]);
             }
 
             printf("\n플레이어 점수: %d\n", playerScore);
@@ -222,7 +311,7 @@ void Homework02_Run()
                 return;
             }
         }
-        else if (choice == 'S' || choice == 's')
+        else if (playerChoice == 'S' || playerChoice == 's')
         {
             // 플레이어 스탠드
             break;
@@ -231,6 +320,64 @@ void Homework02_Run()
         {
             printf("잘못된 입력입니다. Hit(H) 또는 Stand(S)를 선택하세요.\n");
 		}
+	}
+
+
+
+
+
+    printf("=================================\n");
+
+
+
+
+    // 딜러 턴
+    printf("\n딜러 카드: ");
+    for (int i = 0; i < dealerCardCount; i++)
+    {
+        PrintCard(dealerCards[i]);
+    }
+    printf("\n딜러 점수: %d\n", dealerScore);
+
+
+    while (dealerScore < 17 || (dealerScore == 17 && dealerAceCount > 0)) // 딜러가 17 미만이거나 소프트 17인 경우 계속 히트
+    {
+        while (dealerCards[dealerCardCount] == -1)
+        {
+            randIdx = rand() % 52;
+            dealerCards[dealerCardCount] = Deck[randIdx];
+        }   // 딜러 추가 카드 배분 (중복 방지)
+
+        Deck[randIdx] = -1;  // 중복 방지 위해 덱에서 해당 카드 제거(-1)
+        ScoreCard(dealerCards[dealerCardCount], dealerScore, dealerAceCount); // 딜러 추가 카드 점수 계산
+
+        AceAdjustment(dealerScore, dealerAceCount); // A가 11점으로 계산된 경우, 점수가 21을 초과하면 A를 1점으로 변경
+        dealerCardCount++;
+
+        // 딜러 카드 공개
+        printf("\n딜러 카드: ");
+        for (int i = 0; i < dealerCardCount; i++)
+        {
+			PrintCard(dealerCards[i]);
+        }
+        printf("\n딜러 점수: %d\n", dealerScore);
+    }
+    // 승패 판정
+    if (dealerScore > 21)
+    {
+        printf("딜러 버스트! 플레이어 승리.\n");
+    }
+    else if (playerScore > dealerScore)
+    {
+        printf("플레이어 승리!\n");
+    }
+    else if (playerScore < dealerScore)
+    {
+        printf("딜러 승리!\n");
+    }
+    else
+    {
+        printf("무승부! Push.\n");
 	}
 
 
