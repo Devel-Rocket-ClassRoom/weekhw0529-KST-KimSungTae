@@ -14,31 +14,42 @@ using namespace std;
 
 void Homework01_Run()
 {
-	printf("연도, 월, 일을 입력하세요 (예: 2026 5 29): ");
-	int year, month, day;
-	cin >> year >> month >> day;
-    if(year < 1 || month < 1 || month > 12 || day < 1 || day > 31)
+    while (1)
     {
-        printf("잘못된 입력입니다. 연도는 1 이상, 월은 1~12, 일은 1~31 사이여야 합니다.\n");
-        return;
-	}
-    else
-    {   // 1.윤년 계산
-        bool isLeapYear = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
-        int daysInMonth[] = { 31, isLeapYear ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-
-        //2.1년 1월 1일부터 입력한 날짜까지의 총 일수 계산
-        int totalDays = (year - 1) * 365 + (year - 1) / 4 - (year - 1) / 100 + (year - 1) / 400; // 윤년 포함
-        for (int i = 0; i < month - 1; i++)
+        printf("연도, 월, 일을 입력하세요 (예: 2026 5 29)/(종료하려면 0 0 0 입력): ");
+        int year, month, day;
+        cin >> year >> month >> day;
+        if (year != 0 && month != 0 && day != 0)
         {
-            totalDays += daysInMonth[i];
+            if (year < 1 || month < 1 || month > 12 || day < 1 || day > 31)
+            {
+                printf("잘못된 입력입니다. 연도는 1 이상, 월은 1~12, 일은 1~31 사이여야 합니다.\n");
+                return;
+            }
+            else
+            {   // 1.윤년 계산
+                bool isLeapYear = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+                int daysInMonth[] = { 31, isLeapYear ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+
+                //2.1년 1월 1일부터 입력한 날짜까지의 총 일수 계산
+                int totalDays = (year - 1) * 365 + (year - 1) / 4 - (year - 1) / 100 + (year - 1) / 400; // 윤년 포함
+                for (int i = 0; i < month - 1; i++)
+                {
+                    totalDays += daysInMonth[i];
+                }
+                totalDays += day;
+                //3.요일 계산
+                string daysOfWeek[7] = { "월요일", "화요일", "수요일", "목요일", "금요일", "토요일", "일요일" };
+                string dayOfWeek = daysOfWeek[totalDays % 7 - 1];
+                cout << year << "년 " << month << "월 " << day << "일은 " << dayOfWeek << "입니다." << endl;
+            }
         }
-        totalDays += day;
-        //3.요일 계산
-        string daysOfWeek[7] = { "월요일", "화요일", "수요일", "목요일", "금요일", "토요일", "일요일" };
-        string dayOfWeek = daysOfWeek[totalDays % 7 -1];
-		cout << year << "년 " << month << "월 " << day << "일은 " << dayOfWeek << "입니다." << endl;
-	}
+        else
+        {
+            printf("프로그램을 종료합니다.\n");
+            break;
+        }
+    }
 }
 
 
