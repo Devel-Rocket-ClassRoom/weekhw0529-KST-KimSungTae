@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\user\\source\\repos\\0529HW\\",
+  "WorkspaceRootPath": "C:\\Users\\user\\source\\repos\\weekhw0529-KST-KimSungTae\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D259A56B-4B37-4442-8EFE-C0F520C3DC3B}|0529HW\\0529HW.vcxproj|C:\\Users\\user\\source\\repos\\0529HW\\0529HW\\0529HW.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{D259A56B-4B37-4442-8EFE-C0F520C3DC3B}|0529HW\\0529HW.vcxproj|C:\\Users\\user\\source\\repos\\weekhw0529-KST-KimSungTae\\0529HW\\0529HW.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{D259A56B-4B37-4442-8EFE-C0F520C3DC3B}|0529HW\\0529HW.vcxproj|solutionrelative:0529HW\\0529HW.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
@@ -14,17 +14,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "0529HW.cpp",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\0529HW\\0529HW\\0529HW.cpp",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\weekhw0529-KST-KimSungTae\\0529HW\\0529HW.cpp",
               "RelativeDocumentMoniker": "0529HW\\0529HW.cpp",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\0529HW\\0529HW\\0529HW.cpp",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\weekhw0529-KST-KimSungTae\\0529HW\\0529HW.cpp",
               "RelativeToolTip": "0529HW\\0529HW.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAI0AAAAAAAAAAAAAAJ0AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2026-05-29T09:57:31.244Z",
               "EditorCaption": ""
