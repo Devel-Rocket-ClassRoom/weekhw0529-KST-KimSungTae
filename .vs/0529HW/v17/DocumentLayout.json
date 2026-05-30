@@ -14,12 +14,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -28,7 +24,7 @@
               "RelativeDocumentMoniker": "0529HW\\0529HW.cpp",
               "ToolTip": "C:\\Users\\user\\source\\repos\\weekhw0529-KST-KimSungTae\\0529HW\\0529HW.cpp",
               "RelativeToolTip": "0529HW\\0529HW.cpp",
-              "ViewState": "AgIAAEsAAAAAAAAAAADwv48BAAAKAAAAAAAAAA==",
+              "ViewState": "AgIAAFEBAAAAAAAAAAAAAJMBAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2026-05-29T09:57:31.244Z",
               "EditorCaption": ""
